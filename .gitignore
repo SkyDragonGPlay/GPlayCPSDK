@@ -1,0 +1,9 @@
+*.o
+*.o.d
+gplay_for_*/preload_layer
+gplay_for_*/cocos_bridge
+gplay_for_*/gplay.h
+gplay_for_*/prebuilt
+/GPlaySDKDotNetLib/GPlaySDKLib*/obj
+/GPlaySDKDotNetLib/GPlaySDKLib*/bin
+/GPlaySDKDotNetLib/.vs

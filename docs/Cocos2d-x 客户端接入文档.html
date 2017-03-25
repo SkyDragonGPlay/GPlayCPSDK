@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<title>Cocos2d-x 客户端接入文档</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+<style type="text/css">
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	background: none;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+
+<style type="text/css">
+pre.line-numbers {
+	position: relative;
+	padding-left: 3.8em;
+	counter-reset: linenumber;
+}
+
+pre.line-numbers > code {
+	position: relative;
+}
+
+.line-numbers .line-numbers-rows {
+	position: absolute;
+	pointer-events: none;
+	top: 0;
+	font-size: 100%;
+	left: -3.8em;
+	width: 3em; /* works for line-numbers below 1000 lines */
+	letter-spacing: -1px;
+	border-right: 1px solid #999;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+}
+
+	.line-numbers-rows > span {
+		pointer-events: none;
+		display: block;
+		counter-increment: linenumber;
+	}
+
+		.line-numbers-rows > span:before {
+			content: counter(linenumber);
+			color: #999;
+			display: block;
+			padding-right: 0.8em;
+			text-align: right;
+		}
+</style>
+
+<style type="text/css">
+div.prism-show-language {
+	position: relative;
+}
+
+div.prism-show-language > div.prism-show-language-label {
+	color: black;
+	background-color: #CFCFCF;
+	display: inline-block;
+	position: absolute;
+	bottom: auto;
+	left: auto;
+	top: 0;
+	right: 0;
+	width: auto;
+	height: auto;
+	font-size: 0.9em;
+	border-radius: 0 0 0 5px;
+	padding: 0 0.5em;
+	text-shadow: none;
+	z-index: 1;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	-webkit-transform: none;
+	-moz-transform: none;
+	-ms-transform: none;
+	-o-transform: none;
+	transform: none;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="top">GPlaySDK 游戏开发接入文档</h1>
+
+<h3>1.简述</h3>
+
+<hr>
+
+<p>GPlay 手机游戏解决方案, 可以让游戏</p>
+
+<ul>
+<li>无需安装, 点开即玩<br></li>
+<li>按需下载需要的资源,快速进入游戏<br></li>
+<li>一次接入, 无需再次开发, 可直接上架所有 GPlay 合作渠道<br></li>
+<li>像网页游戏一样灵活地部署和升级<br></li>
+</ul>
+
+<p>本文档将介绍游戏如何接入 <strong>GPlaySDK</strong>, 主要内容包括</p>
+
+<ul>
+<li><a href="#environmental_requirement">接入环境要求</a></li>
+<li><a href="#integrate">接入步骤</a>
+
+<ul>
+<li><a href="#3_game_create">创建游戏</a></li>
+<li><a href="#3_integrate_sdk">集成GPlay SDK</a><br></li>
+<li><a href="#3_deal_jni">处理非Cocos引擎功能的JNI调用</a></li>
+<li><a href="#3_run_game">通过 GPlay 接入工具运行游戏, 验证是否有适配问题</a></li>
+<li><a href="#3_divide_resource">资源分包及调优游戏体验</a></li>
+<li><a href="#3_invoke_gplay_api">调用GPlay SDK接口</a></li>
+<li><a href="#3_release_game">发布、测试、上线</a></li>
+<li><a href="#3_upgrade_game">游戏版本更新</a></li>
+</ul></li>
+<li><a href="#gplay_sdk_api">GPlay API 文档</a></li>
+<li><a href="#gplay_faq">GPlay SDK FAQ</a></li>
+</ul>
+
+<h3 id="environmental_requirement">2.接入环境要求</h3>  
+
+<hr>
+
+<ul>
+<li><p>基于Cocos2d-x 3.3以上（包含3.3）版本的游戏建议使用NDK r10e (<a href="http://dl.google.com/android/ndk/android-ndk-r10e-windows-x86_64.exe">Window</a>、<a href="http://dl.google.com/android/repository/android-ndk-r10e-darwin-x86_64.zip">Mac</a>)编译本地代码，具体缘由请查看<a href="#gplay_faq">FAQ</a>。</p></li>
+<li><p>基于Cocos2d-x 3.2及以下版本的游戏建议使用NDK r9d (<a href="https://dl.google.com/android/ndk/android-ndk-r9d-windows-x86_64.zip">Windown</a>、<a href="http://dl.google.com/android/ndk/android-ndk-r9d-darwin-x86_64.tar.bz2">Mac</a>)编译本地代码，具体缘由请查看<a href="#gplay_faq">FAQ</a>。</p></li>
+</ul>
+
+<p>更多Android开发相关工具（SDK、NDK、JDK等）可考虑从国内镜像网站<a href="http://www.androiddevtools.cn/">Android Dev tools</a>下载。  </p>
+
+<h3 id="integrate">3.接入步骤</h3>
+
+<hr>
+
+<h4 id="3_game_create">3.1 创建游戏</h4>
+游戏开发者需要登录 [GPlay 开放平台](http://open.skydragon-inc.com) 创建一个游戏, 填写游戏信息. 游戏创建成功以后, 会获得游戏的 <font color=red>`client_id`, `client_secret`, `private_key`</font> 三个参数, 需要在初始化 GPlaySDK 的时候传入, 用于标识游戏和 SDK 信息的传输加密;  
+
+在接入阶段可以使用测试参数来完成接入，三个参数对应的测试值都是<font color=red>`gplaydemo`</font>。测试完成之后务必将这三个参数改成从GPlay 开发平台申请到的值。  
+
+<font color=red>注: 游戏开发者需要保持这三个秘钥的保密性.</font>  
+
+<h4 id="3_integrate_sdk">3.2 集成GPlay SDK</h4>
+
+<p><a href="#cocos_v3_cpp">Cocos2d-x 3.x CPP 集成GPlay SDK</a><br>
+<a href="#cocos_v3_js">Cocos2d-x 3.x JS 集成GPlay SDK</a><br>
+<a href="#cocos_v3_lua">Cocos2d-x 3.x LUA 集成GPlay SDK</a>    </p>
+
+<p><a href="#cocos_v2_cpp">Cocos2d-x 2.x CPP 集成GPlay SDK</a><br>
+<a href="#cocos_v2_js">Cocos2d-x 2.x JS 集成GPlay SDK</a><br>
+<a href="#cocos_v2_lua">Cocos2d-x 2.x LUA 集成GPlay SDK</a>  </p>
+
+<h6 id="cocos_v3_cpp">3.2.1 Cocos2d-x 3.x CPP 集成GPlay SDK</h6>  
+
+<ul>
+<li><p>获取 <a href="">GPlaySDKForCPP.zip</a>, 解压得到 <code>gplay_for_cpp</code>文件夹</p></li>
+<li><p>添加对 GPlaySDK 库的依赖: </p>
+
+<ul>
+<li><p>复制 <code>gplay_for_cpp</code> 文件夹到 游戏Android工程 <code>pro.android/jni</code> 目录下 </p></li>
+<li><p>编辑 游戏Android工程 <code>pro.android/jni</code> 目录下的 <strong>Android.mk</strong> 文件, 添加对 GPlaySDK 的引用  </p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-none"># 在文件中原 LOCAL_WHOLE_STATIC_LIBRARIES 之后添加
+LOCAL_WHOLE_STATIC_LIBRARIES += gplay_static
+# ...
+# 在文件中原 import-module 之后添加
+$(call import-module, ../proj.android/jni/gplay_for_cpp)</code></pre></div>
+</blockquote></li>
+<li><p><strong>引擎版本低于 3.4 的游戏</strong>需要在 <code>cocos/platform/CCFileUtils.h</code> 中往FileUtils类添加以下函数:</p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-cpp">static void setDelegate(FileUtils *delegate) {
+    if (s_sharedFileUtils != delegate)
+        delete s_sharedFileUtils;
+    s_sharedFileUtils = delegate;
+}</code></pre></div>
+</blockquote></li>
+<li><p><strong>引擎版本低于 3.3 的游戏</strong>修改<code>cocos2dx/platform/android/CCFileUtilsAndroid.h</code>文件，构造函数的访问权限修改为protected</p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-cpp">class CC_DLL FileUtilsAndroid : public FileUtils
+{
+protected:
+    friend class FileUtils;
+    FileUtilsAndroid();
+}</code></pre></div>
+</blockquote></li>
+</ul></li>
+</ul>
+
+<p><a href="#top">返回顶部</a></p>
+
+<h6 id="cocos_v3_js">3.2.2 Cocos2d-x 3.x JS 集成GPlay SDK</h6>
+
+<ul>
+<li><p>获取 <a href="">GPlaySDKForJS.zip</a>, 解压得到 <code>gplay_for_js</code>文件夹  </p></li>
+<li><p>添加对 GPlaySDK 库的依赖: </p>
+
+<ul>
+<li><p>复制 <code>gplay_for_js</code> 文件夹到 游戏Android工程 <code>pro.android/jni</code> 目录下。  </p>
+
+<blockquote>
+<p><font color=red> 3.7以下版本（3.0/3.1/3.2/3.3/3.5/3.6）的JSB工程，复制后请修改<code>gplay_for_js/Android.mk</code>文件中<code>cocos2d_js_static</code>为<code>cocos_jsb_static</code></font>  </p>
+</blockquote></li>
+<li><p>编辑 游戏Android工程 <code>pro.android/jni</code> 目录下的 <strong>Android.mk</strong> 文件, 增加对 GPlaySDK 的依赖</p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-none"># ...
+# 在文件中原 LOCAL_WHOLE_STATIC_LIBRARIES 之后添加
+LOCAL_WHOLE_STATIC_LIBRARIES += gplay_static
+# ...
+# 在文件中原 import-module 之后添加
+$(call import-module, ../runtime-src/proj.android/jni/gplay_for_js)</code></pre></div>
+</blockquote></li>
+<li><p><strong>引擎版本低于 3.4 的游戏</strong>需要在 <code>cocos/platform/CCFileUtils.h</code> 中往FileUtils类添加以下函数:</p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-cpp">static void setDelegate(FileUtils *delegate) {
+    if (s_sharedFileUtils != delegate)
+        delete s_sharedFileUtils;
+    s_sharedFileUtils = delegate;
+}</code></pre></div>
+</blockquote></li>
+<li><p><strong>引擎版本低于 3.3 的游戏</strong>修改<code>cocos/platform/android/CCFileUtilsAndroid.h</code>文件，构造函数的访问权限修改为protected</p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-cpp">class CC_DLL FileUtilsAndroid : public FileUtils
+{
+protected:
+    friend class FileUtils;
+    FileUtilsAndroid();
+}</code></pre></div>
+</blockquote></li>
+</ul></li>
+<li><p>添加 GPlaySDK JS 层接口</p>
+
+<ul>
+<li>复制<code>gplay_for_js/jsapi</code>中的JS脚本文件到游戏脚本目录<code>src</code>中</li>
+<li>添加 <strong>Gplay.js</strong> 到游戏工程 <strong>project.json</strong> 文件的 jsList 列表中 </li>
+</ul></li>
+</ul>
+
+<p><a href="#top">返回顶部</a></p>
+
+<h6 id="cocos_v3_lua">3.2.3 Cocos2d-x 3.x LUA 集成GPlay SDK</h6>
+
+<ul>
+<li><p>获取 <a href="">GPlaySDKForLua.zip</a>, 解压得到 <code>gplay_for_lua</code></p></li>
+<li><p>添加对 GPlaySDK 库的依赖: </p>
+
+<ul>
+<li><p>复制 <code>gplay_for_lua</code> 文件夹到 游戏Android工程 <code>pro.android/jni</code> 目录下</p></li>
+<li><p><font color=red>基于Quick LUA创建</font>的工程 编辑 游戏Android工程 <code>pro.android/jni</code> 目录下的 <strong>android.mk</strong> 文件, 增加对 GPlaySDK 的依赖</p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-none"># 在文件中原 LOCAL_WHOLE_STATIC_LIBRARIES 之后添加
+LOCAL_WHOLE_STATIC_LIBRARIES += gplay_static
+# ...
+# 在文件中原 import-module 之后添加
+$(call import-module, jni/gplay_for_lua)</code></pre></div>
+</blockquote></li>
+<li><p><font color=red>基于Cocos LUA创建</font>的工程 编辑 游戏Android工程 <code>pro.android/jni</code> 目录下的 <strong>android.mk</strong> 文件, 增加对 GPlaySDK 的依赖</p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-none"># 在文件中原 LOCAL_WHOLE_STATIC_LIBRARIES 之后添加
+LOCAL_WHOLE_STATIC_LIBRARIES += gplay_static
+# ...
+# 在文件中原 import-module 之后添加
+$(call import-module, ../runtime-src/proj.android/jni/gplay_for_lua)</code></pre></div>
+</blockquote></li>
+<li><p><font color=red>引擎版本低于 3.4 的游戏需要在 <code>cocos/platform/CCFileUtils.h</code> 中往FileUtils类添加以下函数:</p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-cpp">static void setDelegate(FileUtils *delegate) {
+    if (s_sharedFileUtils != delegate)
+        delete s_sharedFileUtils;
+    s_sharedFileUtils = delegate;
+}</code></pre></div>
+</blockquote></li>
+<li><p><strong>引擎版本低于 3.3 的游戏</strong>修改<code>cocos2dx/platform/android/CCFileUtilsAndroid.h</code>文件，构造函数的访问权限修改为protected</p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-cpp">class CC_DLL FileUtilsAndroid : public FileUtils
+{
+protected:
+    friend class FileUtils;
+    FileUtilsAndroid();
+}</code></pre></div>
+</blockquote></li>
+<li><p>引擎版本低于 3.3(3.0/3.1/3.2) 的游戏复制后请修改<code>gplay_for_lua/Android.mk</code>文件中<code>cocos2d_lua_static</code>为<code>cocos_lua_static</code>。</font></p></li>
+</ul></li>
+<li><p>添加 GPlaySDK LUA 层接口</p>
+
+<ul>
+<li>复制 <code>gplay_for_lua/luaapi</code> 中的LUA脚本文件到游戏 <strong>src/</strong> 中</li>
+<li>在游戏代码中添加引用 <code>require(&quot;Gplay&quot;)</code></li>
+</ul></li>
+</ul>
+
+<p><a href="#top">返回顶部</a></p>
+
+<h6 id="cocos_v2_cpp">3.2.4 Cocos2d-x 2.x CPP 集成GPlay SDK</h6>
+
+<ul>
+<li><p>获取 <a href="">GPlaySDKForCPP.zip</a>, 解压得到 <code>gplay_for_cpp</code>文件夹</p></li>
+<li><p>添加对 GPlaySDK 库的依赖: </p>
+
+<ul>
+<li><p>复制 <code>gplay_for_cpp</code> 文件夹到 游戏Android工程 <code>pro.android/jni</code> 目录下 </p></li>
+<li><p>修改 游戏Android工程 <code>pro.android/jni</code> 目录下的 <strong>Android.mk</strong> 文件, 添加对 GPlaySDK 的引用  </p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-none"># 在文件中原 LOCAL_WHOLE_STATIC_LIBRARIES 之后添加
+LOCAL_WHOLE_STATIC_LIBRARIES += gplay_static
+# ...
+# 在文件中原 import-module 之后添加
+$(call import-module, jni/gplay_for_cpp)</code></pre></div>
+</blockquote></li>
+<li><p>修改游戏Android工程目录下的编译脚本build_native.sh，往NDK_MODULE_PATH添加APP_ANDROID_ROOT路径。(<font color=red>window下可以使用tools目录下的python脚本编译Native代码，免去安装cygwin等用于执行shell的环境</font>)</p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-shell">&quot;$NDK_ROOT&quot;/ndk-build -C &quot;$APP_ANDROID_ROOT&quot; $* \
+&quot;NDK_MODULE_PATH=${APP_ANDROID_ROOT}.....</code></pre></div>
+</blockquote></li>
+<li><p>在 <code>cocos2dx/platform/CCFileUtils.h</code>的CCFileUtils类中添加以下函数:</p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-cpp">static void setDelegate(CCFileUtils *delegate) {
+    if (s_sharedFileUtils != delegate)
+        delete s_sharedFileUtils;
+    s_sharedFileUtils = delegate;
+}</code></pre></div>
+</blockquote></li>
+<li><p>修改<code>cocos2dx/platform/android/CCFileUtilsAndroid.h</code>文件，构造函数的访问权限修改为protected</p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-cpp">class CC_DLL CCFileUtilsAndroid : public CCFileUtils
+{
+protected:
+    friend class CCFileUtils;
+    CCFileUtilsAndroid();
+}</code></pre></div>
+</blockquote></li>
+</ul></li>
+</ul>
+
+<p><a href="#top">返回顶部</a></p>
+
+<h6 id="cocos_v2_js">3.2.5 Cocos2d-x 2.x JS 集成GPlay SDK</h6>
+
+<ul>
+<li><p>获取 <a href="">GPlaySDKForJS.zip</a>, 解压得到 <code>gplay_for_js</code>文件夹  </p></li>
+<li><p>添加对 GPlaySDK 库的依赖: </p>
+
+<ul>
+<li><p>复制 <code>gplay_for_js</code> 文件夹到 游戏Android工程 <code>pro.android/jni</code> 目录下。  </p>
+
+<blockquote>
+<p><font color=red> 复制后请修改<code>gplay_for_js/Android.mk</code>文件中<code>cocos2d_js_static</code>为<code>scriptingcore-spidermonkey</code></font>  </p>
+</blockquote></li>
+<li><p>编辑 游戏Android工程 <code>pro.android/jni</code> 目录下的 <strong>Android.mk</strong> 文件, 增加对 GPlaySDK 的依赖</p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-none"># ...
+# 在文件中原 LOCAL_WHOLE_STATIC_LIBRARIES 之后添加
+LOCAL_WHOLE_STATIC_LIBRARIES += gplay_static
+# ...
+# 在文件中原 import-module 之后添加
+$(call import-module, jni/gplay_for_js)</code></pre></div>
+</blockquote></li>
+<li><p>修改游戏Android工程目录下的编译脚本build_native.sh，往NDK_MODULE_PATH添加APP_ANDROID_ROOT路径。(<font color=red>window下可以考虑使用tools目录下的python脚本编译Native代码，免去安装cygwin等用于执行shell的环境</font>)</p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-none">&quot;$NDK_ROOT&quot;/ndk-build -C &quot;$APP_ANDROID_ROOT&quot; $* \
+&quot;NDK_MODULE_PATH=${APP_ANDROID_ROOT}.....</code></pre></div>
+</blockquote></li>
+<li><p>在 <code>cocos2dx/platform/CCFileUtils.h</code>的CCFileUtils类中添加以下函数:</p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-cpp">static void setDelegate(CCFileUtils *delegate) {
+    if (s_sharedFileUtils != delegate)
+        delete s_sharedFileUtils;
+    s_sharedFileUtils = delegate;
+}</code></pre></div>
+</blockquote></li>
+<li><p>修改<code>cocos2dx/platform/android/CCFileUtilsAndroid.h</code>文件，构造函数的访问权限修改为protected</p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-cpp">class CC_DLL CCFileUtilsAndroid : public CCFileUtils
+{
+protected:
+    friend class CCFileUtils;
+    CCFileUtilsAndroid();
+}</code></pre></div>
+</blockquote></li>
+</ul></li>
+<li><p>添加 GPlaySDK JS 层接口</p>
+
+<ul>
+<li>复制<code>gplay_for_js/jsapi</code>中的JS脚本文件到游戏<code>src</code>中</li>
+<li>在游戏脚本中<code>require Gplay.js</code>脚本,一般在JS入口文件&quot;cocos2d-jsb.js&quot;中有一个游戏脚本列表，可将Gplay.js加入其中： </li>
+</ul>
+
+<div><pre class="line-numbers"><code class="language-javascript">require(&quot;jsb.js&quot;);  
+var appFiles = [  
+&#39;src/resource.js&#39;,  
+&#39;src/myApp.js&#39;,
+&#39;src/Gplay.js&#39;  
+];  
+cc.dumpConfig();  
+for( var i=0; i &lt; appFiles.length; i++) {  
+  require( appFiles[i] );  
+}  </code></pre></div></li>
+</ul>
+
+<p><a href="#top">返回顶部</a></p>
+
+<h6 id="cocos_v2_lua">3.2.6 Cocos2d-x 2.x LUA 集成GPlay SDK</h6>
+
+<ul>
+<li><p>获取 <a href="">GPlaySDKForLua.zip</a>, 解压得到 <code>gplay_for_lua</code></p></li>
+<li><p>添加对 GPlaySDK 库的依赖: </p>
+
+<ul>
+<li>复制 <code>gplay_for_lua</code> 文件夹到 游戏Android工程 <code>pro.android/jni</code> 目录下</li>
+<li><p><font color=red> 复制后非Quick Lua请修改<code>gplay_for_lua/Android.mk</code>文件中<code>cocos2d_lua_static</code>为<code>cocos_lua_static</code>, Quick Lua请修改为quickcocos2dx</font></p></li>
+<li><p>编辑 游戏Android工程 <code>pro.android/jni</code> 目录下的 <strong>android.mk</strong> 文件, 增加对 GPlaySDK 的依赖</p></li>
+</ul>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-none">#在文件中原 LOCAL_WHOLE_STATIC_LIBRARIES之后添加
+LOCAL_WHOLE_STATIC_LIBRARIES += gplay_static
+#在文件中原import-module之后添加
+$(call import-module, jni/gplay_for_lua)</code></pre></div>
+</blockquote>
+
+<ul>
+<li><p>修改游戏Android工程目录下的编译脚本build_native.sh，往NDK_MODULE_PATH添加APP_ANDROID_ROOT路径。(<font color=red>window下可以使用tools目录下的python脚本编译Native代码，免去安装cygwin等用于执行shell的环境</font>)</p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-none">&quot;$NDK_ROOT&quot;/ndk-build -C &quot;$APP_ANDROID_ROOT&quot; $* \
+&quot;NDK_MODULE_PATH=${APP_ANDROID_ROOT}......</code></pre></div>
+</blockquote></li>
+<li><p>需要在 <code>cocos2dx/platform/CCFileUtils.h</code>的CCFileUtils类中添加以下函数:</p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-cpp">static void setDelegate(CCFileUtils *delegate) {
+    if (s_sharedFileUtils != delegate)
+        delete s_sharedFileUtils;
+    s_sharedFileUtils = delegate;
+}</code></pre></div>
+</blockquote></li>
+<li><p>修改<code>cocos2dx/platform/android/CCFileUtilsAndroid.h</code>文件，构造函数的访问权限修改为protected</p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-cpp">class CC_DLL CCFileUtilsAndroid : public CCFileUtils
+{
+protected:
+    friend class CCFileUtils;
+    CCFileUtilsAndroid();
+}</code></pre></div>
+</blockquote></li>
+</ul></li>
+<li><p><font color=red> 因脚本资源保存路径中文件夹可能包含&quot;.&quot;点号，和引擎 2.x LUA模块定义有冲突，所以游戏入口脚本(通常在AppDelegate.cpp)的加载不要使用完整路径。例如：</p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-cpp">string fullPath = CCFileUtils::sharedFileUtils()-fullPathForFilename(&quot;hello.lua&quot;);
+luaEngine-&gt;executeScriptFile(fullPath.c_str());</code></pre></div>
+</blockquote>
+
+<p>上面的加载方式需要修改为：</p>
+
+<blockquote>
+<div><pre class="line-numbers"><code class="language-cpp">luaEngine-&gt;executeScriptFile(&quot;hello.lua&quot;);</code></pre></div>
+
+<p></font></p>
+</blockquote></li>
+<li><p>添加 GPlaySDK LUA 层接口</p>
+
+<ul>
+<li>复制 <code>gplay_for_lua/luaapi</code> 中的LUA脚本文件到游戏 <strong>src/</strong> 中</li>
+<li>在游戏代码中添加引用 <code>require(&quot;Gplay&quot;)</code></li>
+<li><font color=red>使用引擎版本低于2.2.2版本的游戏还需要引用<code>require(&quot;json&quot;)</code></font></li>
+</ul></li>
+</ul>
+
+<p><a href="#top">返回顶部</a></p>
+
+<h4 id="3_deal_jni">3.3 处理非Cocos引擎功能的JNI调用</h4>
+
+<p>GPlay在Java层只提供了Cocos引擎原有功能和GPlay服务的支持，游戏代码如果包含有其他非引擎原有功能的JNI调用及相关依赖等, 可能导致游戏在运行时出现 <strong>JNI相关调用异常</strong>等。</p>
+
+<p>在GPlay模式下需要屏蔽这类调用, 或者将这类功能单独编译成一个dex格式的JAR。
+这些调用通常是对第三方SDK的调用, 如统计SDK, 支付SDK, 推送SDK以及开发者在Java层扩展的其他功能等。 </p>
+
+<p>处理非Cocos引擎功能JNI的调用有两种可选方法  </p>
+
+<ul>
+<li> 使用扩展jar，保留大部分或者所有非引擎功能的JNI调用<br></li>
+<li> 完全去除非引擎功能的JNI调用，可使用宏控制是否编译或者运行时通过GPlay的接口(<font color=red>isInGplayEnv</font>)判断是否在GPlay环境</li>
+</ul>
+
+<p>扩展JAR包必须符合以下条件：  </p>
+
+<ul>
+<li>jar必须转成dex格式;<br></li>
+<li>扩展jar不能访问Android SDK任何组件及不能对Android UI做任何控制;<br></li>
+<li>如果Jar中有对JNI的调用，则必须确保游戏so中有此JNI方法;</li>
+<li>如果游戏native代码中有对Java方法的调用，jar必须正确包含此Java函数的实现;<br></li>
+<li>jar包不得与宿主App产生类冲突</li>
+</ul>
+
+<p><a href="#top">返回顶部</a></p>
+
+<h4 id="3_run_game">3.4 通过 GPlay 接入工具运行游戏, 验证是否有适配问题</h4>
+
+<p>重新打包游戏APK，这一阶段建议编译 <strong>Debug</strong> 包, 接下来的调试阶段可能需要经常查看游戏和引擎的log输出。  </p>
+
+<p>打开 GPlay 接入工具 <strong>GPlayTool</strong>, 导入生成的游戏 APK 来添加游戏. 连接 Android设备（PC上也可使用海马等模拟器）, 点击右上角<strong>运行游戏</strong>. Android 设备上将会以 GPlay 形式启动游戏, 验证游戏运行是否正常</p>
+
+<ul>
+<li>注: 
+
+<ul>
+<li>工具使用请参考 <strong>&quot;<a href="">GPlay 接入工具使用说明文档</a>&quot;</strong></li>
+<li>未分资源的情况下运行游戏, 会先下载游戏的所有资源, 主要用于测试适配性, 分过资源以后, 只需要下载 Boot_Scene 里的资源就可以启动游戏</li>
+<li>点击<strong>显示日志</strong> 可以查看设备运行的 log</li>
+<li>若有修改native代码（C、C++）需要重新编译生成 Debug APK<br></li>
+</ul></li>
+</ul>
+
+<p><strong>完成条件: 通过 GPlay 接入工具运行游戏, 游戏正常运行, 没有 JNI 调用异常等错误</strong></p>
+
+<p><a href="#top">返回顶部</a></p>
+
+<h4 id="3_divide_resource">3.5 资源分包及调优游戏体验</h4>
+
+<ul>
+<li>使用 GPlay 接入工具为游戏资源分包:</li>
+</ul>
+
+<p>对于游戏的不同模块如 <strong>战斗</strong>, <strong>商店</strong> 等建立资源分包, 在工具中配置此模块中需要用到的资源。以满足该模块正常运行的资源集合为准, 不同的资源分包可以重复包含其他资源包的资源。  </p>
+
+<ul>
+<li>修改游戏代码</li>
+</ul>
+
+<p>模块运行前先使用 <code>gplay::preloadResourceBundle(bundleName, successCallback)</code>加载该模块需要的资源包,在 successCallback 回调中运行模块. (接口使用请参考API文档)</p>
+
+<ul>
+<li>测试资源包划分是否有遗漏</li>
+</ul>
+
+<p>重新打包游戏APK，<strong>关闭</strong> 工具 <strong>静默下载</strong> 开关, 点击 <strong>运行</strong> 启动游戏。工具会按照当前的资源划分情况重新运行游戏, 但不会在后台自动下载资源, 每次加载资源包都会触发前台加载界面. 期间游戏可能由于缺少了必需的资源而导致游戏崩溃, 游戏开发者可以通过查看游戏日志可以获得提示, 找到当前需要加载却没有配置的资源, 加入到对应的资源包. 调整资源分包后继续点击 <strong>运行</strong> 再次启动游戏测试, 直到没有崩溃.</p>
+
+<ul>
+<li>测试划分资源后游戏体验是否流畅</li>
+</ul>
+
+<p><strong>打开</strong> 工具 <strong>静默下载</strong> 开关, 点击 <strong>运行</strong> 启动游戏, 工具会按照当前的资源划分运行游戏, 并且静默下载后续资源, 观察游戏进入前台加载的情况, 如果次数过多, 则需要调整优化资源分包情况. 原则上将最先用到的几个资源包分得细一点, 可以达到比较流程的游戏体验, 尽可能减少出现前台加载资源包.</p>
+
+<p><strong>完成条件: 通过 GPlay 接入工具运行游戏, 没有崩溃, 没有无法接受的前台加载资源包状况</strong></p>
+
+<ul>
+<li>注:<br>
+
+<ul>
+<li><strong>这个过程需要多次反复测试以达到最佳效果</strong></li>
+<li><strong><font color=red>在 preloadResourceBundle 回调之前, 请勿再次调用此接口</font></strong></li>
+</ul></li>
+</ul>
+
+<p><a href="#top">返回顶部</a></p>
+
+<h4 id="">3.6 GPlay 模式下屏蔽游戏自身的热更新</h4>
+
+<p>GPlay 模式有一套完善的游戏版本更新机制, 将游戏原本需要的大/小版本更新统一成了 <strong>以资源包为单位</strong> 的 <strong>增量更新</strong>, 使用GPlay Tools发布时会生成升级包随同新版本一起发布到线上. 升级更加方便和顺滑。使用这种方式升级, <strong>游戏开发者需要<font color=red>屏蔽游戏原有的热更新</font></strong></p>
+
+<p><a href="#top">返回顶部</a></p>
+
+<h4 id="3_invoke_gplay_api">3.7 调用 GPlaySDK 接口</h4>
+
+<ul>
+<li><p>客户端接入</p>
+
+<ul>
+<li>调用渠道的<strong>登陆</strong>, <strong>支付</strong>, <strong>分享</strong>, <strong>发送到桌面快捷方式</strong>等功能</li>
+<li>修改原来结束游戏的接口, 改用 <strong>gplay::quitGame()</strong><br></li>
+</ul></li>
+<li><p>服务端接入</p>
+
+<ul>
+<li>使用 GPlaySDK 的支付接口, 游戏开发者需要在 GPlay 开放平台配置当前游戏的 <strong>支付回调接口</strong>, 客户端支付成功后该回调接口会被调用, 返回支付信息 *( 参考 <strong>GPlaySDK 服务端接入文档</strong> )*</li>
+</ul></li>
+</ul>
+
+<p><a href="#top">返回顶部</a></p>
+
+<h4 id="3_release_game">3.8 发布, 测试, 上线</h4>
+
+<ul>
+<li>发布</li>
+</ul>
+
+<p>修改 jni/Application.mk: <code>APP_ABI := armeabi armeabi-v7a x86</code> 生成包含各个架构的 <strong>release</strong> 版本 APK, 在工具中更换 APK 包, 点击 <strong>发布</strong>, 工具将根据最新的资源分包, 生成一套 GPlayPackage, 用于发布. 游戏开发者需要将此文件夹部署到 CDN 上, 并到 GPlay 开放平台上配置 <strong>下载地址</strong> 为游戏包根目录的 URL. </p>
+
+<ul>
+<li>测试</li>
+</ul>
+
+<p>安装工具包中附带的 GplayDemo.apk 到 Android 设备中, 运行并找到自己的游戏, 点开即玩.</p>
+
+<ul>
+<li>上线</li>
+</ul>
+
+<p>GPlay 审核游戏过后, 会将游戏上线</p>
+
+<p><a href="#top">返回顶部</a></p>
+
+<h4 id="3_upgrade_game">3.9 游戏版本更新</h4>
+
+<p>游戏在准备正式发布大小版本的时候, 需要同时部署更新对应版本的 GPlayPackage</p>
+
+<ul>
+<li>更新新版本资源</li>
+</ul>
+
+<p>使用 GPlay 接入工具导入新版本APK, 工具会自动清理上版本资源配置文件中新版本中不再使用的资源, 其余资源配置保持不变. 游戏开发者根据新版本的资源变动, 回到 <strong>步骤 5</strong>, 将未分配的资源分配到各个资源包中。</p>
+
+<ul>
+<li>生成</li>
+</ul>
+
+<p>配置游戏的当前线上地址到工具游戏配置的 <strong>发布地址</strong> 栏目中, 点击 <strong>发布</strong> , 此时生成的 GPlayPackage 将包含对当前线上版本资源的 <strong>增量升级包</strong>, 玩家在进入游戏后会按需自动下载资源<strong>增量升级包</strong> 来升级游戏资源。                                                                    </p>
+
+<ul>
+<li>部署</li>
+</ul>
+
+<p>直接使用最新的 GPlayPackage 的内容替换游戏发布 服务器 上的 GPlayPackage </p>
+
+<ul>
+<li>注:
+
+<ul>
+<li>GPlay 模式下, 不管是资源、脚本还是本地代码的变化, 都将统一使用 <strong>增量更新</strong></li>
+<li>增量更新的用户可以快速开始新版本的游戏, 按需升级不同的资源包.</li>
+<li><strong><font color=red> GPlay 模式的更新机制统一了游戏的大/小版本更新, 开发者需要屏蔽游戏自身的热更新逻辑</font></strong></li>
+</ul></li>
+</ul>
+
+<p><a href="#top">返回顶部</a></p>
+
+<h2 id="toc_0"><h3 id="gplay_sdk_api">GPlay API文档<h3></h2>
+
+<p><a href="GPlay%E5%AE%A2%E6%88%B7%E7%AB%AF%20CPP%20API%E6%96%87%E6%A1%A3.html">GPlay CPP API 文档</a><br>
+<a href="GPlay%E5%AE%A2%E6%88%B7%E7%AB%AF%20JS%20API%E6%96%87%E6%A1%A3.html">GPlay JS API 文档</a><br>
+<a href="GPlay%E5%AE%A2%E6%88%B7%E7%AB%AF%20LUA%20API%E6%96%87%E6%A1%A3.html">GPlay LUA API 文档</a>  </p>
+
+<h2 id="toc_1"><h3 id="gplay_faq">GPlay SDK FAQ<h3></h2>
+
+<ul>
+<li><h4 id="toc_2">Q: 为什么要使用特定版本的 NDK</h4>
+
+<blockquote>
+<p>GPlay 使用的引擎标准 so 是基于 特定版本的NDK编译的. 开发者使用相同版本的 NDK 编译, 可以使游戏在 GPlay 模式下更快地启动（差分包大小更小）</p>
+</blockquote></li>
+<li><h4 id="toc_3">Q: 我该如何划分资源最好?</h4>
+
+<blockquote>
+<p>一般基于以下几个原则</p>
+</blockquote>
+
+<ul>
+<li>初始几个资源包要尽量小, 可以使游戏运行更加流畅</li>
+<li>控制游戏首包(Boot_Scene)在 5M 以下, 可以更快速地进入游戏</li>
+<li>后续资源包按实际会使用到资源来划分</li>
+</ul></li>
+<li><h4 id="toc_4">Q: 我该如何减小游戏首包(Boot_Scene)的体积?</h4>
+
+<blockquote>
+<p>首场景通常是登录界面, 可以从以下几点下手做到小包优化:</p>
+</blockquote>
+
+<ul>
+<li>在画质可以接受范围内压缩登录界面图片资源的大小</li>
+<li>中文字体库通常较大, 更换更精简的字体库文件可以大大减小包的体积</li>
+<li>登陆界面可能用到了 1 分多钟的背景音乐, 考虑改为十几秒音乐循环播放</li>
+</ul></li>
+<li><h4 id="toc_5">Q: 我的资源包之间有很多重复资源, 会被重复下载吗?</h4>
+
+<blockquote>
+<p>工具会对资源包中重复的资源进行优化划分, 确保资源不会在实际运行时被多次下载</p>
+</blockquote></li>
+<li><h4 id="toc_6">Q: 游戏每次 preloadResourceBundles 都会去下载指定的资源吗?</h4>
+
+<blockquote>
+<p>SDK 会检查需要加载的资源包本地是否完整, 如果本地已存在对应完整的资源包则直接调用回调函数</p>
+</blockquote></li>
+<li><h4 id="toc_7">Q: 为什么需要屏蔽游戏对非引擎 Java 层代码的调用（JNI调用）?</h4>
+
+<blockquote>
+<p>GPlay 模式分离出纯粹的游戏脚本和使用的引擎, 不包含游戏开发者自行添加的 Android 层代码, 如对第三方 SDK, 或其他 Java 开源库. 如果在 GPlay 模式下运行的时候仍然对这些 Android 代码发起调用, 会因为找不到这些方法而崩溃.</p>
+</blockquote></li>
+<li><h4 id="toc_8">Q: 游戏在 GPlay 模式下正常运行, 打包出原生游戏却崩溃要怎么办?</h4>
+
+<blockquote>
+<p>GPlay 在运行环境中添加了自己的 Android 层, 响应脚本 gplay::login() 等接口的调用. 游戏在原生 APK 中运行的时候是找不到这些 Android 方法的, 仍然调用这些接口就会出现问题. 建议通过预定义宏控制编译Runtime（GPlay）模式和非Runtime模式（原生）游戏。</p>
+</blockquote></li>
+<li><h4 id="toc_9">Q: x86 架构编译失败, gcc no such file or directory</h4>
+
+<blockquote>
+<p>检查 gcc 是否被 360 安全卫士等安全保护软件当作破坏性程序拦截了</p>
+</blockquote></li>
+</ul>
+
+<p><a href="#top">返回顶部</a></p>
+
+
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(\w+)\b/i,t=0,n=_self.Prism={util:{encode:function(e){return e instanceof a?new a(e.type,n.util.encode(e.content),e.alias):"Array"===n.util.type(e)?e.map(n.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},objId:function(e){return e.__id||Object.defineProperty(e,"__id",{value:++t}),e.__id},clone:function(e){var t=n.util.type(e);switch(t){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=n.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return n.util.clone(e)})}return e}},languages:{extend:function(e,t){var a=n.util.clone(n.languages[e]);for(var r in t)a[r]=t[r];return a},insertBefore:function(e,t,a,r){r=r||n.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==t)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return n.languages.DFS(n.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,t,a,r){r=r||{};for(var l in e)e.hasOwnProperty(l)&&(t.call(e,l,e[l],a||l),"Object"!==n.util.type(e[l])||r[n.util.objId(e[l])]?"Array"!==n.util.type(e[l])||r[n.util.objId(e[l])]||(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,l,r)):(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,null,r)))}},plugins:{},highlightAll:function(e,t){var a={callback:t,selector:'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'};n.hooks.run("before-highlightall",a);for(var r,l=a.elements||document.querySelectorAll(a.selector),i=0;r=l[i++];)n.highlightElement(r,e===!0,a.callback)},highlightElement:function(t,a,r){for(var l,i,o=t;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=n.languages[l]),t.className=t.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=t.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=t.textContent,u={element:t,language:l,grammar:i,code:s};if(!s||!i)return n.hooks.run("complete",u),void 0;if(n.hooks.run("before-highlight",u),a&&_self.Worker){var c=new Worker(n.filename);c.onmessage=function(e){u.highlightedCode=e.data,n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},c.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=n.highlight(u.code,u.grammar,u.language),n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(t),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},highlight:function(e,t,r){var l=n.tokenize(e,t);return a.stringify(n.util.encode(l),r)},tokenize:function(e,t){var a=n.Token,r=[e],l=t.rest;if(l){for(var i in l)t[i]=l[i];delete t.rest}e:for(var i in t)if(t.hasOwnProperty(i)&&t[i]){var o=t[i];o="Array"===n.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],c=u.inside,g=!!u.lookbehind,h=!!u.greedy,f=0,d=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var m=r[p];if(r.length>e.length)break e;if(!(m instanceof a)){u.lastIndex=0;var y=u.exec(m),v=1;if(!y&&h&&p!=r.length-1){var b=r[p+1].matchedStr||r[p+1],k=m+b;if(p<r.length-2&&(k+=r[p+2].matchedStr||r[p+2]),u.lastIndex=0,y=u.exec(k),!y)continue;var w=y.index+(g?y[1].length:0);if(w>=m.length)continue;var _=y.index+y[0].length,P=m.length+b.length;if(v=3,P>=_){if(r[p+1].greedy)continue;v=2,k=k.slice(0,P)}m=k}if(y){g&&(f=y[1].length);var w=y.index+f,y=y[0].slice(f),_=w+y.length,S=m.slice(0,w),O=m.slice(_),j=[p,v];S&&j.push(S);var A=new a(i,c?n.tokenize(y,c):y,d,y,h);j.push(A),O&&j.push(O),Array.prototype.splice.apply(r,j)}}}}}return r},hooks:{all:{},add:function(e,t){var a=n.hooks.all;a[e]=a[e]||[],a[e].push(t)},run:function(e,t){var a=n.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(t)}}},a=n.Token=function(e,t,n,a,r){this.type=e,this.content=t,this.alias=n,this.matchedStr=a||null,this.greedy=!!r};if(a.stringify=function(e,t,r){if("string"==typeof e)return e;if("Array"===n.util.type(e))return e.map(function(n){return a.stringify(n,t,e)}).join("");var l={type:e.type,content:a.stringify(e.content,t,r),tag:"span",classes:["token",e.type],attributes:{},language:t,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===n.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}n.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var t=JSON.parse(e.data),a=t.language,r=t.code,l=t.immediateClose;_self.postMessage(n.highlight(r,n.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var r=document.currentScript||[].slice.call(document.getElementsByTagName("script")).pop();return r&&(n.filename=r.src,document.addEventListener&&!r.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",n.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+
+<script type="text/javascript">
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],string:{pattern:/(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,greedy:!0},"class-name":{pattern:/((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":/[a-z0-9_]+(?=\()/i,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,punctuation:/[{}[\];(),.:]/};
+</script>
+
+<script type="text/javascript">
+Prism.languages.c=Prism.languages.extend("clike",{keyword:/\b(asm|typeof|inline|auto|break|case|char|const|continue|default|do|double|else|enum|extern|float|for|goto|if|int|long|register|return|short|signed|sizeof|static|struct|switch|typedef|union|unsigned|void|volatile|while)\b/,operator:/\-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|?\||[~^%?*\/]/,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)[ful]*\b/i}),Prism.languages.insertBefore("c","string",{macro:{pattern:/(^\s*)#\s*[a-z]+([^\r\n\\]|\\.|\\(?:\r\n?|\n))*/im,lookbehind:!0,alias:"property",inside:{string:{pattern:/(#\s*include\s*)(<.+?>|("|')(\\?.)+?\3)/,lookbehind:!0},directive:{pattern:/(#\s*)\b(define|elif|else|endif|error|ifdef|ifndef|if|import|include|line|pragma|undef|using)\b/,lookbehind:!0,alias:"keyword"}}},constant:/\b(__FILE__|__LINE__|__DATE__|__TIME__|__TIMESTAMP__|__func__|EOF|NULL|stdin|stdout|stderr)\b/}),delete Prism.languages.c["class-name"],delete Prism.languages.c["boolean"];
+</script>
+
+<script type="text/javascript">
+Prism.languages.cpp=Prism.languages.extend("c",{keyword:/\b(alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|class|compl|const|constexpr|const_cast|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|float|for|friend|goto|if|inline|int|long|mutable|namespace|new|noexcept|nullptr|operator|private|protected|public|register|reinterpret_cast|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/,"boolean":/\b(true|false)\b/,operator:/[-+]{1,2}|!=?|<{1,2}=?|>{1,2}=?|\->|:{1,2}|={1,2}|\^|~|%|&{1,2}|\|?\||\?|\*|\/|\b(and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/}),Prism.languages.insertBefore("cpp","keyword",{"class-name":{pattern:/(class\s+)[a-z0-9_]+/i,lookbehind:!0}});
+</script>
+
+<script type="text/javascript">
+Prism.languages.javascript=Prism.languages.extend("clike",{keyword:/\b(as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|var|void|while|with|yield)\b/,number:/\b-?(0x[\dA-Fa-f]+|0b[01]+|0o[0-7]+|\d*\.?\d+([Ee][+-]?\d+)?|NaN|Infinity)\b/,"function":/[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*(?=\()/i}),Prism.languages.insertBefore("javascript","keyword",{regex:{pattern:/(^|[^\/])\/(?!\/)(\[.+?]|\\.|[^\/\\\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})]))/,lookbehind:!0,greedy:!0}}),Prism.languages.insertBefore("javascript","class-name",{"template-string":{pattern:/`(?:\\\\|\\?[^\\])*?`/,greedy:!0,inside:{interpolation:{pattern:/\$\{[^}]+\}/,inside:{"interpolation-punctuation":{pattern:/^\$\{|\}$/,alias:"punctuation"},rest:Prism.languages.javascript}},string:/[\s\S]+/}}}),Prism.languages.markup&&Prism.languages.insertBefore("markup","tag",{script:{pattern:/(<script[\w\W]*?>)[\w\W]*?(?=<\/script>)/i,lookbehind:!0,inside:Prism.languages.javascript,alias:"language-javascript"}}),Prism.languages.js=Prism.languages.javascript;
+</script>
+
+<script type="text/javascript">
+!function(){"undefined"!=typeof self&&self.Prism&&self.document&&Prism.hooks.add("complete",function(e){if(e.code){var t=e.element.parentNode,s=/\s*\bline-numbers\b\s*/;if(t&&/pre/i.test(t.nodeName)&&(s.test(t.className)||s.test(e.element.className))&&!e.element.querySelector(".line-numbers-rows")){s.test(e.element.className)&&(e.element.className=e.element.className.replace(s,"")),s.test(t.className)||(t.className+=" line-numbers");var n,a=e.code.match(/\n(?!$)/g),l=a?a.length+1:1,m=new Array(l+1);m=m.join("<span></span>"),n=document.createElement("span"),n.className="line-numbers-rows",n.innerHTML=m,t.hasAttribute("data-start")&&(t.style.counterReset="linenumber "+(parseInt(t.getAttribute("data-start"),10)-1)),e.element.appendChild(n)}}})}();
+</script>
+
+<script type="text/javascript">
+!function(){if("undefined"!=typeof self&&self.Prism&&self.document){var e={html:"HTML",xml:"XML",svg:"SVG",mathml:"MathML",css:"CSS",clike:"C-like",javascript:"JavaScript",abap:"ABAP",actionscript:"ActionScript",apacheconf:"Apache Configuration",apl:"APL",applescript:"AppleScript",asciidoc:"AsciiDoc",aspnet:"ASP.NET (C#)",autoit:"AutoIt",autohotkey:"AutoHotkey",basic:"BASIC",csharp:"C#",cpp:"C++",coffeescript:"CoffeeScript","css-extras":"CSS Extras",fsharp:"F#",glsl:"GLSL",http:"HTTP",inform7:"Inform 7",json:"JSON",latex:"LaTeX",lolcode:"LOLCODE",matlab:"MATLAB",mel:"MEL",nasm:"NASM",nginx:"nginx",nsis:"NSIS",objectivec:"Objective-C",ocaml:"OCaml",parigp:"PARI/GP",php:"PHP","php-extras":"PHP Extras",powershell:"PowerShell",jsx:"React JSX",rest:"reST (reStructuredText)",sas:"SAS",sass:"Sass (Sass)",scss:"Sass (Scss)",sql:"SQL",typescript:"TypeScript",vhdl:"VHDL",vim:"vim",wiki:"Wiki markup",yaml:"YAML"};Prism.hooks.add("before-highlight",function(s){var a=s.element.parentNode;if(a&&/pre/i.test(a.nodeName)){var t,i,r=a.getAttribute("data-language")||e[s.language]||s.language.substring(0,1).toUpperCase()+s.language.substring(1),l=a.previousSibling;l&&/\s*\bprism-show-language\b\s*/.test(l.className)&&l.firstChild&&/\s*\bprism-show-language-label\b\s*/.test(l.firstChild.className)?i=l.firstChild:(t=document.createElement("div"),i=document.createElement("div"),i.className="prism-show-language-label",t.className="prism-show-language",t.appendChild(i),a.parentNode.insertBefore(t,a)),i.innerHTML=r}})}}();
+</script>
+
+
+</body>
+
+</html>

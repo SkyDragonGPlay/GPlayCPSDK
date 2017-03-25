@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<title>GPlay客户端 JS API文档</title>
+
+
+<style type="text/css">
+body {
+  font-family: Helvetica, arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: white;
+  padding: 30px; }
+
+body > *:first-child {
+  margin-top: 0 !important; }
+body > *:last-child {
+  margin-bottom: 0 !important; }
+
+a {
+  color: #4183C4; }
+a.absent {
+  color: #cc0000; }
+a.anchor {
+  display: block;
+  padding-left: 30px;
+  margin-left: -30px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+  cursor: text;
+  position: relative; }
+
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA09pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoMTMuMCAyMDEyMDMwNS5tLjQxNSAyMDEyLzAzLzA1OjIxOjAwOjAwKSAgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OUM2NjlDQjI4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OUM2NjlDQjM4ODBGMTFFMTg1ODlEODNERDJBRjUwQTQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5QzY2OUNCMDg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5QzY2OUNCMTg4MEYxMUUxODU4OUQ4M0REMkFGNTBBNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PsQhXeAAAABfSURBVHjaYvz//z8DJYCRUgMYQAbAMBQIAvEqkBQWXI6sHqwHiwG70TTBxGaiWwjCTGgOUgJiF1J8wMRAIUA34B4Q76HUBelAfJYSA0CuMIEaRP8wGIkGMA54bgQIMACAmkXJi0hKJQAAAABJRU5ErkJggg==) no-repeat 10px center;
+  text-decoration: none; }
+
+h1 tt, h1 code {
+  font-size: inherit; }
+
+h2 tt, h2 code {
+  font-size: inherit; }
+
+h3 tt, h3 code {
+  font-size: inherit; }
+
+h4 tt, h4 code {
+  font-size: inherit; }
+
+h5 tt, h5 code {
+  font-size: inherit; }
+
+h6 tt, h6 code {
+  font-size: inherit; }
+
+h1 {
+  font-size: 28px;
+  color: black; }
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #cccccc;
+  color: black; }
+
+h3 {
+  font-size: 18px; }
+
+h4 {
+  font-size: 16px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  color: #777777;
+  font-size: 14px; }
+
+p, blockquote, ul, ol, dl, li, table, pre {
+  margin: 15px 0; }
+
+hr {
+  background: transparent url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC) repeat-x 0 0;
+  border: 0 none;
+  color: #cccccc;
+  height: 4px;
+  padding: 0;
+}
+
+body > h2:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+body > h1:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+  body > h1:first-child + h2 {
+    margin-top: 0;
+    padding-top: 0; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child {
+  margin-top: 0;
+  padding-top: 0; }
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0; }
+
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p {
+  margin-top: 0; }
+
+li p.first {
+  display: inline-block; }
+li {
+  margin: 0; }
+ul, ol {
+  padding-left: 30px; }
+
+ul :first-child, ol :first-child {
+  margin-top: 0; }
+
+dl {
+  padding: 0; }
+  dl dt {
+    font-size: 14px;
+    font-weight: bold;
+    font-style: italic;
+    padding: 0;
+    margin: 15px 0 5px; }
+    dl dt:first-child {
+      padding: 0; }
+    dl dt > :first-child {
+      margin-top: 0; }
+    dl dt > :last-child {
+      margin-bottom: 0; }
+  dl dd {
+    margin: 0 0 15px;
+    padding: 0 15px; }
+    dl dd > :first-child {
+      margin-top: 0; }
+    dl dd > :last-child {
+      margin-bottom: 0; }
+
+blockquote {
+  border-left: 4px solid #dddddd;
+  padding: 0 15px;
+  color: #777777; }
+  blockquote > :first-child {
+    margin-top: 0; }
+  blockquote > :last-child {
+    margin-bottom: 0; }
+
+table {
+  padding: 0;border-collapse: collapse; }
+  table tr {
+    border-top: 1px solid #cccccc;
+    background-color: white;
+    margin: 0;
+    padding: 0; }
+    table tr:nth-child(2n) {
+      background-color: #f8f8f8; }
+    table tr th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr td {
+      border: 1px solid #cccccc;
+      margin: 0;
+      padding: 6px 13px; }
+    table tr th :first-child, table tr td :first-child {
+      margin-top: 0; }
+    table tr th :last-child, table tr td :last-child {
+      margin-bottom: 0; }
+
+img {
+  max-width: 100%; }
+
+span.frame {
+  display: block;
+  overflow: hidden; }
+  span.frame > span {
+    border: 1px solid #dddddd;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin: 13px 0 0;
+    padding: 7px;
+    width: auto; }
+  span.frame span img {
+    display: block;
+    float: left; }
+  span.frame span span {
+    clear: both;
+    color: #333333;
+    display: block;
+    padding: 5px 0 0; }
+span.align-center {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-center > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: center; }
+  span.align-center span img {
+    margin: 0 auto;
+    text-align: center; }
+span.align-right {
+  display: block;
+  overflow: hidden;
+  clear: both; }
+  span.align-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px 0 0;
+    text-align: right; }
+  span.align-right span img {
+    margin: 0;
+    text-align: right; }
+span.float-left {
+  display: block;
+  margin-right: 13px;
+  overflow: hidden;
+  float: left; }
+  span.float-left span {
+    margin: 13px 0 0; }
+span.float-right {
+  display: block;
+  margin-left: 13px;
+  overflow: hidden;
+  float: right; }
+  span.float-right > span {
+    display: block;
+    overflow: hidden;
+    margin: 13px auto 0;
+    text-align: right; }
+
+code, tt {
+  margin: 0 2px;
+  padding: 0 5px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px; }
+
+pre code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent; }
+
+.highlight pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #cccccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px; }
+  pre code, pre tt {
+    background-color: transparent;
+    border: none; }
+
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:0 auto;
+    }
+}
+@media print {
+	table, pre {
+		page-break-inside: avoid;
+	}
+	pre {
+		word-wrap: break-word;
+	}
+}
+</style>
+
+<style type="text/css">
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+code[class*="language-"],
+pre[class*="language-"] {
+	color: black;
+	background: none;
+	text-shadow: 0 1px white;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #f5f2f0;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	padding: .1em;
+	border-radius: .3em;
+	white-space: normal;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: slategray;
+}
+
+.token.punctuation {
+	color: #999;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #905;
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #690;
+}
+
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color: #a67f59;
+	background: hsla(0, 0%, 100%, .5);
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+	color: #07a;
+}
+
+.token.function {
+	color: #DD4A68;
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+	color: #e90;
+}
+
+.token.important,
+.token.bold {
+	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
+}
+
+.token.entity {
+	cursor: help;
+}
+</style>
+
+<style type="text/css">
+pre.line-numbers {
+	position: relative;
+	padding-left: 3.8em;
+	counter-reset: linenumber;
+}
+
+pre.line-numbers > code {
+	position: relative;
+}
+
+.line-numbers .line-numbers-rows {
+	position: absolute;
+	pointer-events: none;
+	top: 0;
+	font-size: 100%;
+	left: -3.8em;
+	width: 3em; /* works for line-numbers below 1000 lines */
+	letter-spacing: -1px;
+	border-right: 1px solid #999;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+}
+
+	.line-numbers-rows > span {
+		pointer-events: none;
+		display: block;
+		counter-increment: linenumber;
+	}
+
+		.line-numbers-rows > span:before {
+			content: counter(linenumber);
+			color: #999;
+			display: block;
+			padding-right: 0.8em;
+			text-align: right;
+		}
+</style>
+
+<style type="text/css">
+div.prism-show-language {
+	position: relative;
+}
+
+div.prism-show-language > div.prism-show-language-label {
+	color: black;
+	background-color: #CFCFCF;
+	display: inline-block;
+	position: absolute;
+	bottom: auto;
+	left: auto;
+	top: 0;
+	right: 0;
+	width: auto;
+	height: auto;
+	font-size: 0.9em;
+	border-radius: 0 0 0 5px;
+	padding: 0 0.5em;
+	text-shadow: none;
+	z-index: 1;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	-webkit-transform: none;
+	-moz-transform: none;
+	-ms-transform: none;
+	-o-transform: none;
+	transform: none;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<h1 id="toc_0">GplaySDK JS API文档</h1>
+
+<h3 id="toc_1">API 列表</h3>
+
+<hr>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">API 名称</th>
+<th style="text-align: center">API 说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">gplay.isInGplayEnv()</td>
+<td style="text-align: center">当前游戏是否处于 Gplay 环境</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.initSDK()</td>
+<td style="text-align: center">初始化SDK</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.getChannelID()</td>
+<td style="text-align: center">游戏当前所在的渠道ID</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.getNetworkType()</td>
+<td style="text-align: center">获取网络类型</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.preloadResourceBundle()</td>
+<td style="text-align: center">加载资源包</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.preloadResourceBundles()</td>
+<td style="text-align: center">加载多个资源包</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.backFromResourceBundle()</td>
+<td style="text-align: center">自动划分资源模式下停止分配资源到指定资源包</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.setPreloadResponseCallback()</td>
+<td style="text-align: center">设置加载资源包的响应回调</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.isLogined()</td>
+<td style="text-align: center">检查登录状态</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.getUserID()</td>
+<td style="text-align: center">获取用户 ID</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.login()</td>
+<td style="text-align: center">登录</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.quitGame()</td>
+<td style="text-align: center">结束游戏</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.share()</td>
+<td style="text-align: center">分享游戏</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.pay()</td>
+<td style="text-align: center">支付</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.createShortcut()</td>
+<td style="text-align: center">创建桌面快捷图标</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.callSyncFunc()</td>
+<td style="text-align: center">调用同步扩展接口</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.callAsyncFunc()</td>
+<td style="text-align: center">调用异步扩展接口</td>
+</tr>
+</tbody>
+</table>
+
+<h3 id="toc_2">API 说明</h3>
+
+<hr>
+
+<h4 id="toc_3">gplay.isInGplayEnv() 当前游戏是否处于 Gplay 环境</h4>
+
+<h6 id="toc_4">描述</h6>
+
+<p>判断当前游戏是否处于 Gplay 环境</p>
+
+<h6 id="toc_5">参数</h6>
+
+<p>无</p>
+
+<h6 id="toc_6">结果</h6>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">返回 Bool 值</th>
+<th style="text-align: left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left"><strong>true</strong></td>
+<td style="text-align: left">游戏当前处于 <strong>Gplay 环境</strong>下</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>false</strong></td>
+<td style="text-align: left">游戏当前处于 <strong>非 Gplay 环境</strong>下</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h4 id="toc_7">gplay.initSDK(appKey, appSecret, privateKey) 获取参数信息</h4>
+
+<h6 id="toc_8">描述</h6>
+
+<p>初始化 GplaySDK, 需要在<strong><font color="red">使用登录支付等API调用前</font></strong>调用</p>
+
+<h6 id="toc_9">参数</h6>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">appKey</td>
+<td style="text-align: left">游戏的 Gplay 唯一标识</td>
+</tr>
+<tr>
+<td style="text-align: left">appSecret</td>
+<td style="text-align: left">游戏的 Gplay 秘钥</td>
+</tr>
+<tr>
+<td style="text-align: left">privateKey</td>
+<td style="text-align: left">游戏的 Gplay 签名盐值</td>
+</tr>
+</tbody>
+</table>
+
+<h6 id="toc_10">结果</h6>
+
+<p>无, 将参数初始化到游戏运行时配置中, 用于敏感 API 的加密.</p>
+
+<hr>
+
+<h4 id="toc_11">gplay.getNetworkType() 获取网络类型</h4>
+
+<h6 id="toc_12">描述</h6>
+
+<p>获取当前设备所处的网络类型</p>
+
+<h6 id="toc_13">参数</h6>
+
+<p>无</p>
+
+<h6 id="toc_14">结果</h6>
+
+<p>返回网络状态, 可以使用 SDK 提供的常量判断, 有如下 3 种:</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">返回常量</th>
+<th style="text-align: left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">gplay.NetworkType.NO_NETWORK</td>
+<td style="text-align: left">设备当前<strong>无网络连接</strong></td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.NetworkType.MOBILE</td>
+<td style="text-align: left">设备当前处于<strong>非 WIFI 环境</strong>下</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.NetworkType.WIFI</td>
+<td style="text-align: left">设备当前处于<strong>WIFI 环境</strong>下</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h4 id="toc_15">gplay.preloadResourceBundle(group, successCallback) 加载资源包</h4>
+
+<h6 id="toc_16">描述</h6>
+
+<p>游戏运行模块前调用, 指定当前模块需要用到的资源包, GPlay SDK会检测判断是否需要下载缺失的资源:</p>
+
+<ul>
+<li>指定的资源包完整, 不需要下载：callback 会立即被调用通知游戏加载完成, 执行回调中的代码</li>
+<li>指定的资源包本地不存在或者线上有更新, 需要下载：GPlay SDK 开始下载指定的资源包, 下载完成后通过 callback 回到游戏</li>
+<li>使用GPlay Tools自动分场景资源时，callback会立即被调用通用游戏加载完成，从这一时间点起访问的相关资源会被分配到这个资源包，直到加载新的资源包。</li>
+<li><font color=red>在 preloadResourceBundle 回调之前, 请勿再次调用此接口<br></li>
+<li>对应模块退出时应该调用backFromGroup(groupName)，以支持在GPlay Tools上使用自动划分资源功能</font></li>
+</ul>
+
+<h6 id="toc_17">参数</h6>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">名称</th>
+<th style="text-align: left">参数说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">group</td>
+<td style="text-align: center">资源包名称</td>
+<td style="text-align: left">指定需要确认加载的资源包名称</td>
+</tr>
+<tr>
+<td style="text-align: left">successCallback</td>
+<td style="text-align: center">加载成功回调函数</td>
+<td style="text-align: left">加载资源包完成的后续逻辑, 也就是当前模块的游戏逻辑</td>
+</tr>
+</tbody>
+</table>
+
+<h6 id="toc_18">结果</h6>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: center">加载情况</th>
+<th style="text-align: left">效果</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: center">加载成功</td>
+<td style="text-align: left">执行传入的回调, 继续游戏</td>
+</tr>
+<tr>
+<td style="text-align: center">空间不足</td>
+<td style="text-align: left">弹框提示“空间不足”错误信息, 提示玩家选择<strong>重试</strong>或者<strong>退出</strong></td>
+</tr>
+<tr>
+<td style="text-align: center">校验失败</td>
+<td style="text-align: left">弹框提示“校验失败”错误信息, 提示玩家选择<strong>重试</strong>或者<strong>退出</strong></td>
+</tr>
+<tr>
+<td style="text-align: center">网络异常</td>
+<td style="text-align: left">弹框提示“网络异常”错误信息, 提示玩家选择<strong>重试</strong>或者<strong>退出</strong></td>
+</tr>
+</tbody>
+</table>
+
+<h6 id="toc_19">说明</h6>
+
+<p>接入过程中, 只需要把进入场景时的原有逻辑, 或逻辑入口放在 successCallback 中即可, 如将</p>
+
+<div><pre class="line-numbers"><code class="language-javascript">onClickCallback:function () {
+    var scene = new cc.GameScene();
+    cc.director.replaceScene(scene);
+}</code></pre></div>
+
+<p>改为</p>
+
+<div><pre class="line-numbers"><code class="language-javascript">onClickCallback:function () {
+    gplay.preloadResourceBundle(&quot;shop_scene&quot;, function() {
+        var scene = new cc.GameScene();
+        cc.director.replaceScene(scene);
+    }, this);
+}</code></pre></div>
+
+<hr>
+
+<h4 id="toc_20">gplay.preloadResourceBundles(groups, successCallback) 加载多个资源包</h4>
+
+<h6 id="toc_21">描述</h6>
+
+<p>使用此方法, 可以在游戏进入场景前, 指定下载当前游戏场景需要的多个资源包。
+<font color=red> 使用GPlay Tools自动划分资源功能时，不支持一次加载多个资源包（工具无法明确资源应该划分给哪一个资源包）</font></p>
+
+<h6 id="toc_22">参数</h6>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">名称</th>
+<th style="text-align: center">参数说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">groups</td>
+<td style="text-align: center">资源包列表</td>
+<td style="text-align: center">指定需要确认加载的资源包列表</td>
+</tr>
+<tr>
+<td style="text-align: left">successCallback</td>
+<td style="text-align: center">加载完成回调函数</td>
+<td style="text-align: center">加载资源包完成的后续逻辑, 也就是当前模块的游戏逻辑</td>
+</tr>
+</tbody>
+</table>
+
+<h6 id="toc_23">示例</h6>
+
+<div><pre class="line-numbers"><code class="language-javascript">goToGame:function (sender) {
+    gplay.preloadResourceBundle([&quot;hero&quot;, &quot;monster&quot;, &quot;skill_res&quot;], function() {
+        var scene = new cc.GameScene();
+        cc.director.pushScene(scene);
+    }, this);
+}</code></pre></div>
+
+<hr>
+
+<p>gplay.backFromResourceBundle(group)</p>
+
+<h6 id="toc_24">描述</h6>
+
+<p>GPlay Tools自动划分资源模式下停止分配资源到指定资源包，建议在场景资源相关联的Scene等节点的cleanup调用。</p>
+
+<h6 id="toc_25">示例</h6>
+
+<div><pre class="line-numbers"><code class="language-javascript">var GameScene = cc.Scene.extend({
+    cleanup:function()
+    {
+        this._super();
+        gplay.backFromResourceBundle(&quot;gameScene&quot;);
+    }
+});</code></pre></div>
+
+<hr>
+
+<h4 id="toc_26">gplay.setPreloadResponseCallback(callback, target) 设置加载资源包的响应回调</h4>
+
+<h6 id="toc_27">描述</h6>
+
+<p>设置加载资源包的响应回调，用于CP定制加载资源包的进度界面等。如果CP没有定制需求则不需要调用这个接口。  </p>
+
+<h6 id="toc_28">参数说明：</h6>
+
+<p>resultCode:</p>
+
+<ul>
+<li>gplay.ActionResultCode.PRELOAD_RESULT_SUCCESS：下载成功</li>
+<li>gplay.ActionResultCode.PRELOAD_RESULT_PROGRESS：下载进行中</li>
+<li>gplay.ActionResultCode.PRELOAD_RESULT_FAILED：下载失败</li>
+</ul>
+
+<p>errorCode:</p>
+
+<ul>
+<li>gplay.ActionResultCode.PRELOAD_ERROR_NETWORK：网络错误</li>
+<li>gplay.ActionResultCode.PRELOAD_ERROR_VERIFY_FAILED：校验错误</li>
+<li>gplay.ActionResultCode.PRELOAD_ERROR_NO_SPACE：存储空间不足</li>
+<li>gplay.ActionResultCode.PRELOAD_ERROR_UNKNOWN：未知错误</li>
+<li>gplay.ActionResultCode.PRELOAD_ERROR_NONE：没有错误</li>
+</ul>
+
+<p>groupName:当前正在下载的资源包<br>
+percent：当前下载进度<br>
+speed：当前下载速度  </p>
+
+<h6 id="toc_29">示例</h6>
+
+<div><pre class="line-numbers"><code class="language-javascript">gplay.setPreloadResponseCallback(function(resultCode, errorCode, groupName, percent, speed) {
+
+});</code></pre></div>
+
+<hr>
+
+<h4 id="toc_30">gplay.isLogined() 检查登录状态</h4>
+
+<h6 id="toc_31">描述</h6>
+
+<p>检查游戏在渠道用户系统上的登录状态</p>
+
+<h6 id="toc_32">参数</h6>
+
+<p>无</p>
+
+<h6 id="toc_33">结果</h6>
+
+<p>返回 Boolean 结果</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">返回值</th>
+<th style="text-align: left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left"><strong>true</strong></td>
+<td style="text-align: left">正常登录</td>
+</tr>
+<tr>
+<td style="text-align: left"><strong>false</strong></td>
+<td style="text-align: left">未登录或已断线</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h4 id="toc_34">gplay.getUserID() 获取用户 ID</h4>
+
+<h6 id="toc_35">描述</h6>
+
+<p>获取游戏玩家在渠道用户系统上分配的 ID</p>
+
+<h6 id="toc_36">参数</h6>
+
+<p>无</p>
+
+<h6 id="toc_37">结果</h6>
+
+<p>返回 string 结果, 表示用户 ID</p>
+
+<hr>
+
+<h4 id="toc_38">gplay.login( callback ) 登录</h4>
+
+<h6 id="toc_39">描述</h6>
+
+<p>调用 GplaySDK 的登录方法, 呼唤渠道的登录功能, 登录成功以后调用回调方法, 通知游戏登录结果.</p>
+
+<h6 id="toc_40">参数</h6>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">名称</th>
+<th style="text-align: left">参数说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">callback</td>
+<td style="text-align: center">登录结果回调函数</td>
+<td style="text-align: left">登录模块处理完毕后调用, 通知游戏登录结果</td>
+</tr>
+</tbody>
+</table>
+
+<h6 id="toc_41">结果</h6>
+
+<p>调用传入的 callback 方法, 会传入两个参数</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">名称</th>
+<th style="text-align: left">参数说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">code</td>
+<td style="text-align: center">登录结果代码</td>
+<td style="text-align: left">用于标示此次登录的结果</td>
+</tr>
+<tr>
+<td style="text-align: left">msg</td>
+<td style="text-align: center">登录结果消息</td>
+<td style="text-align: left">相对于登录结果的一条消息</td>
+</tr>
+</tbody>
+</table>
+
+<h6 id="toc_42">使用说明</h6>
+
+<p>游戏传入的回调函数, 需要对此回调结果做出相应的处理, 将登录逻辑移至回调当中, 例:</p>
+
+<div><pre class="line-numbers"><code class="language-javascript">callback = function (code, msg) {
+    switch (code){
+        case gplay.ActionResultCode.USER_LOGIN_RESULT_SUCCESS:
+            // 登录成功
+            break;
+        case gplay.ActionResultCode.USER_LOGIN_RESULT_FAIL:
+            // 登录失败
+            break;
+        default :
+            // ....
+    }
+};
+gplay.login( callback.bind(this) );
+</code></pre></div>
+
+<p>登录接口的结果有如下几种:</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">常量值</th>
+<th style="text-align: center">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">gplay.ActionResultCode.USER_RESULT_NETWROK_ERROR</td>
+<td style="text-align: center">网络错误</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.ActionResultCode.USER_LOGIN_RESULT_SUCCESS</td>
+<td style="text-align: center">登录成功</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.ActionResultCode.USER_LOGIN_RESULT_FAIL</td>
+<td style="text-align: center">登录失败</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.ActionResultCode.USER_RESULT_USEREXTENSION</td>
+<td style="text-align: center">扩展结果</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h4 id="toc_43">gplay:quitGame() 退出游戏</h4>
+
+<h6 id="toc_44">描述</h6>
+
+<p>游戏开发者需要将结束游戏的 <code>cc.director.end()</code> 等结束游戏的 API 替换为 <code>gplay.quitGame()</code>.</p>
+
+<h6 id="toc_45">参数</h6>
+
+<p>无</p>
+
+<h6 id="toc_46">结果</h6>
+
+<p>关闭游戏, 游戏中的 <code>onExit()</code> 等生命周期不需要改动, 在关闭游戏之前都会被调用到.</p>
+
+<hr>
+
+<h4 id="toc_47">gplay.share( gplayShareParams, callback ) 分享游戏</h4>
+
+<h6 id="toc_48">描述</h6>
+
+<p>调用 GplaySDK 的分享游戏方法, 呼唤渠道的分享游戏功能, 成功以后调用回调方法, 通知游戏分享结果.</p>
+
+<h6 id="toc_49">参数</h6>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">名称</th>
+<th style="text-align: left">参数说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">gplayShareParams</td>
+<td style="text-align: center">分享参数对象</td>
+<td style="text-align: left">GplayShareParams 对象, 保存着参数键值对</td>
+</tr>
+<tr>
+<td style="text-align: left">callback</td>
+<td style="text-align: center">分享结果回调函数</td>
+<td style="text-align: left">分享功能处理完毕后调用, 通知游戏分享结果</td>
+</tr>
+</tbody>
+</table>
+
+<h6 id="toc_50">结果</h6>
+
+<p>调用传入的 callback 方法, 会传入两个参数</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">名称</th>
+<th style="text-align: left">参数说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">code</td>
+<td style="text-align: center">分享结果代码</td>
+<td style="text-align: left">用于标示此次分享的结果</td>
+</tr>
+<tr>
+<td style="text-align: left">msg</td>
+<td style="text-align: center">分享结果消息</td>
+<td style="text-align: left">相对于分享结果的一条消息</td>
+</tr>
+</tbody>
+</table>
+
+<p>分享接口的结果有如下几种:</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">常量值</th>
+<th style="text-align: center">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">gplay.ActionResultCode.SHARE_RESULT_SUCCESS</td>
+<td style="text-align: center">分享成功</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.ActionResultCode.SHARE_RESULT_FAIL</td>
+<td style="text-align: center">分享失败</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.ActionResultCode.SHARE_RESULT_CANCEL</td>
+<td style="text-align: center">取消分享</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.ActionResultCode.SHARE_RESULT_NETWORK_ERROR</td>
+<td style="text-align: center">网络错误</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.ActionResultCode.SHARE_RESULT_SHAREREXTENSION</td>
+<td style="text-align: center">扩展结果</td>
+</tr>
+</tbody>
+</table>
+
+<h5 id="toc_51">使用说明</h5>
+
+<p>GplayShareParams 是分享接口需要传入的分享参数类型, 需要提前设置好必填参数, 否则回调会报出信息不完整的错误.</p>
+
+<div><pre class="line-numbers"><code class="language-javascript">var params = new GplayShareParams();
+
+params.setPageUrl(&quot;http://192.168.1.3&quot;);                                // 分享页面 Url
+params.setTitle(&quot;JSSDKDemo&quot;);                                           // 分享标题
+params.setText(&quot;JSSDKDemo 是 GplaySDK 的线下测试版本&quot;);                    // 分享内容
+params.setImgUrl(&quot;http://192.168.1.3:8888/moon/icon/large_icon.png&quot;);   // 分享图片 Url
+params.setImgTitle(&quot;large_icon&quot;);                                       // 分享图片标题
+
+gplay.share(params, function (ret, msg) {
+    ...
+}.bind(this));</code></pre></div>
+
+<hr>
+
+<h4 id="toc_52">gplay.pay( gplayPayParams, callback ) 支付</h4>
+
+<h6 id="toc_53">描述</h6>
+
+<p>调用 GplaySDK 的支付方法, 呼唤第三方支付系统的支付功能, 成功以后调用回调方法, 通知游戏支付结果.</p>
+
+<h6 id="toc_54">参数</h6>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">名称</th>
+<th style="text-align: left">参数说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">gplayPayParams</td>
+<td style="text-align: center">支付参数对象</td>
+<td style="text-align: left">GplayPayParams 对象, 保存着参数键值对</td>
+</tr>
+<tr>
+<td style="text-align: left">callback</td>
+<td style="text-align: center">支付结果回调函数</td>
+<td style="text-align: left">支付功能处理完毕后调用, 通知游戏支付结果</td>
+</tr>
+</tbody>
+</table>
+
+<h6 id="toc_55">结果</h6>
+
+<p>调用传入的 callback 方法, 会传入两个参数</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">名称</th>
+<th style="text-align: left">参数说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">code</td>
+<td style="text-align: center">支付结果代码</td>
+<td style="text-align: left">用于标示此次支付的结果</td>
+</tr>
+<tr>
+<td style="text-align: left">msg</td>
+<td style="text-align: center">支付结果消息</td>
+<td style="text-align: left">相对于支付结果的一条消息</td>
+</tr>
+</tbody>
+</table>
+
+<p>支付接口的结果有如下几种:</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">常量值</th>
+<th style="text-align: center">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">gplay.ActionResultCode.PAY_RESULT_SUCCESS</td>
+<td style="text-align: center">支付成功</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.ActionResultCode.PAY_RESULT_FAIL</td>
+<td style="text-align: center">支付失败</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.ActionResultCode.PAY_RESULT_CANCEL</td>
+<td style="text-align: center">支付取消</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.ActionResultCode.PAY_RESULT_NETWORK_ERROR</td>
+<td style="text-align: center">网络错误</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.ActionResultCode.PAY_RESULT_INVALID</td>
+<td style="text-align: center">支付参数不完整</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.ActionResultCode.PAY_RESULT_NOW_PAYING</td>
+<td style="text-align: center">正在支付</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.ActionResultCode.PAY_RESULT_PAYEXTENSION</td>
+<td style="text-align: center">扩展结果</td>
+</tr>
+</tbody>
+</table>
+
+<h5 id="toc_56">使用说明</h5>
+
+<p>GplayPayParams 是支付接口需要传入的支付参数类型, 需要提前设置好必填参数, 否则会报错.</p>
+
+<div><pre class="line-numbers"><code class="language-javascript">var params = new GplayPayParams();
+
+params.setProductID(&quot;id_gold&quot;);    // 商品 ID
+params.setProductName(&quot;gold&quot;);     // 商品名称
+params.setProductPrice(1);         // 商品单价 number 类型
+params.setProductCount(1);         // 商品数量 number 类型
+params.setProductDescription(&quot;game currency, use to purchase in app&quot;);    // 商品描述
+params.setGameUserID(&quot;lixiaoyaoid&quot;);     // 玩家 ID
+params.setGameUserName(&quot;lixiaoyao&quot;);     // 玩家昵称
+params.setServerID(&quot;skybigid&quot;);          // 服务器 ID
+params.setServerName(&quot;skybig&quot;);          // 服务器名称
+params.setExtraData(&#39;{&quot;key1&quot;:&quot;value1&quot;, &quot;key2&quot;:&quot;value2&quot;}&#39;); // 扩展参数, 默认为空
+
+gplay.pay(params, function (ret, msg) {
+    ...
+}.bind(this));</code></pre></div>
+
+<p>注: price 和 count 参数为 <strong>number</strong>, 其余为 string, 请勿传错类型.</p>
+
+<hr>
+
+<h4 id="toc_57">gplay.createShortcut( callback ) 创建桌面快捷图标</h4>
+
+<h6 id="toc_58">描述</h6>
+
+<p>调用渠道 的创建桌面快捷图标功能, 成功以后调用回调方法, 通知游戏是否创建成功.</p>
+
+<h6 id="toc_59">参数</h6>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">名称</th>
+<th style="text-align: left">参数说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">callback</td>
+<td style="text-align: center">创建图标结果回调函数</td>
+<td style="text-align: left">创建图标功能处理完毕后调用, 通知游戏创建结果</td>
+</tr>
+</tbody>
+</table>
+
+<h6 id="toc_60">结果</h6>
+
+<p>调用传入的 callback 方法, 会传入两个参数</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">名称</th>
+<th style="text-align: left">参数说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">code</td>
+<td style="text-align: center">创建结果代码</td>
+<td style="text-align: left">用于标示此次创建的结果</td>
+</tr>
+<tr>
+<td style="text-align: left">msg</td>
+<td style="text-align: center">创建结果消息</td>
+<td style="text-align: left">相对于创建结果的一条消息</td>
+</tr>
+</tbody>
+</table>
+
+<p>使用方法请参考 login 接口的例子</p>
+
+<p>创建桌面快捷图标接口的结果有如下几种:</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">常量值</th>
+<th style="text-align: center">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">gplay.ActionResultCode.SHORTCUT_RESULT_SUCCESS</td>
+<td style="text-align: center">创建成功</td>
+</tr>
+<tr>
+<td style="text-align: left">gplay.ActionResultCode.SHORTCUT_RESULT_FAILED</td>
+<td style="text-align: center">创建失败</td>
+</tr>
+</tbody>
+</table>
+
+<hr>
+
+<h4 id="toc_61">gplay.callSyncFunc( funcName, params ) 渠道同步扩展接口</h4>
+
+<h6 id="toc_62">描述</h6>
+
+<p>除 Gplay 标准 API 之外, 渠道单独提供特殊接口需要实现时, 使用此通用的扩展接口来调用同步方法. </p>
+
+<h6 id="toc_63">参数</h6>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">名称</th>
+<th style="text-align: left">参数说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">funcName</td>
+<td style="text-align: center">方法名称</td>
+<td style="text-align: left">希望调用到的方法名</td>
+</tr>
+<tr>
+<td style="text-align: left">params</td>
+<td style="text-align: center">扩展接口参数</td>
+<td style="text-align: left">js 对象, 保存着参数键值对</td>
+</tr>
+</tbody>
+</table>
+
+<h6 id="toc_64">结果</h6>
+
+<p>返回一个 String 类型结果, 游戏开发者从 string 中解析出方法执行的结果</p>
+
+<hr>
+
+<h4 id="toc_65">gplay.callAsyncFunc( funcName, params, callbackFunc ) 渠道异步扩展接口</h4>
+
+<h6 id="toc_66">描述</h6>
+
+<p>除 Gplay 标准 API 之外, 渠道单独提供特殊接口需要实现时, 使用此通用的扩展接口来调用异步方法.</p>
+
+<h6 id="toc_67">参数</h6>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">名称</th>
+<th style="text-align: left">参数说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">funcName</td>
+<td style="text-align: center">方法名称</td>
+<td style="text-align: left">希望调用到的方法名</td>
+</tr>
+<tr>
+<td style="text-align: left">params</td>
+<td style="text-align: center">扩展接口参数</td>
+<td style="text-align: left">js 对象, 保存着参数键值对</td>
+</tr>
+<tr>
+<td style="text-align: left">callbackFunc</td>
+<td style="text-align: center">扩展接口回调函数</td>
+<td style="text-align: left">异步接口调用, 通知游戏执行结果</td>
+</tr>
+</tbody>
+</table>
+
+<h6 id="toc_68">结果</h6>
+
+<p>调用传入的 callbackFunc 方法, 会传入两个参数</p>
+
+<table>
+<thead>
+<tr>
+<th style="text-align: left">参数</th>
+<th style="text-align: center">名称</th>
+<th style="text-align: left">参数说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td style="text-align: left">code</td>
+<td style="text-align: center">执行代码</td>
+<td style="text-align: left">用于标示此次执行的结果</td>
+</tr>
+<tr>
+<td style="text-align: left">msg</td>
+<td style="text-align: center">消息</td>
+<td style="text-align: left">相对于执行状态的一条消息</td>
+</tr>
+</tbody>
+</table>
+
+<p>游戏开发者根据约定的 code 和 msg 获得方法执行的状态, 执行相应的回调代码.</p>
+
+<p>使用方法请参考 login 接口的例子</p>
+
+
+
+<script type="text/javascript">
+var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(\w+)\b/i,t=0,n=_self.Prism={util:{encode:function(e){return e instanceof a?new a(e.type,n.util.encode(e.content),e.alias):"Array"===n.util.type(e)?e.map(n.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},objId:function(e){return e.__id||Object.defineProperty(e,"__id",{value:++t}),e.__id},clone:function(e){var t=n.util.type(e);switch(t){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=n.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return n.util.clone(e)})}return e}},languages:{extend:function(e,t){var a=n.util.clone(n.languages[e]);for(var r in t)a[r]=t[r];return a},insertBefore:function(e,t,a,r){r=r||n.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==t)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return n.languages.DFS(n.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,t,a,r){r=r||{};for(var l in e)e.hasOwnProperty(l)&&(t.call(e,l,e[l],a||l),"Object"!==n.util.type(e[l])||r[n.util.objId(e[l])]?"Array"!==n.util.type(e[l])||r[n.util.objId(e[l])]||(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,l,r)):(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,null,r)))}},plugins:{},highlightAll:function(e,t){var a={callback:t,selector:'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'};n.hooks.run("before-highlightall",a);for(var r,l=a.elements||document.querySelectorAll(a.selector),i=0;r=l[i++];)n.highlightElement(r,e===!0,a.callback)},highlightElement:function(t,a,r){for(var l,i,o=t;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=n.languages[l]),t.className=t.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=t.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=t.textContent,u={element:t,language:l,grammar:i,code:s};if(!s||!i)return n.hooks.run("complete",u),void 0;if(n.hooks.run("before-highlight",u),a&&_self.Worker){var c=new Worker(n.filename);c.onmessage=function(e){u.highlightedCode=e.data,n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},c.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=n.highlight(u.code,u.grammar,u.language),n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(t),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},highlight:function(e,t,r){var l=n.tokenize(e,t);return a.stringify(n.util.encode(l),r)},tokenize:function(e,t){var a=n.Token,r=[e],l=t.rest;if(l){for(var i in l)t[i]=l[i];delete t.rest}e:for(var i in t)if(t.hasOwnProperty(i)&&t[i]){var o=t[i];o="Array"===n.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],c=u.inside,g=!!u.lookbehind,h=!!u.greedy,f=0,d=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var m=r[p];if(r.length>e.length)break e;if(!(m instanceof a)){u.lastIndex=0;var y=u.exec(m),v=1;if(!y&&h&&p!=r.length-1){var b=r[p+1].matchedStr||r[p+1],k=m+b;if(p<r.length-2&&(k+=r[p+2].matchedStr||r[p+2]),u.lastIndex=0,y=u.exec(k),!y)continue;var w=y.index+(g?y[1].length:0);if(w>=m.length)continue;var _=y.index+y[0].length,P=m.length+b.length;if(v=3,P>=_){if(r[p+1].greedy)continue;v=2,k=k.slice(0,P)}m=k}if(y){g&&(f=y[1].length);var w=y.index+f,y=y[0].slice(f),_=w+y.length,S=m.slice(0,w),O=m.slice(_),j=[p,v];S&&j.push(S);var A=new a(i,c?n.tokenize(y,c):y,d,y,h);j.push(A),O&&j.push(O),Array.prototype.splice.apply(r,j)}}}}}return r},hooks:{all:{},add:function(e,t){var a=n.hooks.all;a[e]=a[e]||[],a[e].push(t)},run:function(e,t){var a=n.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(t)}}},a=n.Token=function(e,t,n,a,r){this.type=e,this.content=t,this.alias=n,this.matchedStr=a||null,this.greedy=!!r};if(a.stringify=function(e,t,r){if("string"==typeof e)return e;if("Array"===n.util.type(e))return e.map(function(n){return a.stringify(n,t,e)}).join("");var l={type:e.type,content:a.stringify(e.content,t,r),tag:"span",classes:["token",e.type],attributes:{},language:t,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===n.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}n.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var t=JSON.parse(e.data),a=t.language,r=t.code,l=t.immediateClose;_self.postMessage(n.highlight(r,n.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var r=document.currentScript||[].slice.call(document.getElementsByTagName("script")).pop();return r&&(n.filename=r.src,document.addEventListener&&!r.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",n.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+</script>
+
+<script type="text/javascript">
+Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],string:{pattern:/(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,greedy:!0},"class-name":{pattern:/((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":/[a-z0-9_]+(?=\()/i,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,punctuation:/[{}[\];(),.:]/};
+</script>
+
+<script type="text/javascript">
+Prism.languages.javascript=Prism.languages.extend("clike",{keyword:/\b(as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|var|void|while|with|yield)\b/,number:/\b-?(0x[\dA-Fa-f]+|0b[01]+|0o[0-7]+|\d*\.?\d+([Ee][+-]?\d+)?|NaN|Infinity)\b/,"function":/[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*(?=\()/i}),Prism.languages.insertBefore("javascript","keyword",{regex:{pattern:/(^|[^\/])\/(?!\/)(\[.+?]|\\.|[^\/\\\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})]))/,lookbehind:!0,greedy:!0}}),Prism.languages.insertBefore("javascript","class-name",{"template-string":{pattern:/`(?:\\\\|\\?[^\\])*?`/,greedy:!0,inside:{interpolation:{pattern:/\$\{[^}]+\}/,inside:{"interpolation-punctuation":{pattern:/^\$\{|\}$/,alias:"punctuation"},rest:Prism.languages.javascript}},string:/[\s\S]+/}}}),Prism.languages.markup&&Prism.languages.insertBefore("markup","tag",{script:{pattern:/(<script[\w\W]*?>)[\w\W]*?(?=<\/script>)/i,lookbehind:!0,inside:Prism.languages.javascript,alias:"language-javascript"}}),Prism.languages.js=Prism.languages.javascript;
+</script>
+
+<script type="text/javascript">
+!function(){"undefined"!=typeof self&&self.Prism&&self.document&&Prism.hooks.add("complete",function(e){if(e.code){var t=e.element.parentNode,s=/\s*\bline-numbers\b\s*/;if(t&&/pre/i.test(t.nodeName)&&(s.test(t.className)||s.test(e.element.className))&&!e.element.querySelector(".line-numbers-rows")){s.test(e.element.className)&&(e.element.className=e.element.className.replace(s,"")),s.test(t.className)||(t.className+=" line-numbers");var n,a=e.code.match(/\n(?!$)/g),l=a?a.length+1:1,m=new Array(l+1);m=m.join("<span></span>"),n=document.createElement("span"),n.className="line-numbers-rows",n.innerHTML=m,t.hasAttribute("data-start")&&(t.style.counterReset="linenumber "+(parseInt(t.getAttribute("data-start"),10)-1)),e.element.appendChild(n)}}})}();
+</script>
+
+<script type="text/javascript">
+!function(){if("undefined"!=typeof self&&self.Prism&&self.document){var e={html:"HTML",xml:"XML",svg:"SVG",mathml:"MathML",css:"CSS",clike:"C-like",javascript:"JavaScript",abap:"ABAP",actionscript:"ActionScript",apacheconf:"Apache Configuration",apl:"APL",applescript:"AppleScript",asciidoc:"AsciiDoc",aspnet:"ASP.NET (C#)",autoit:"AutoIt",autohotkey:"AutoHotkey",basic:"BASIC",csharp:"C#",cpp:"C++",coffeescript:"CoffeeScript","css-extras":"CSS Extras",fsharp:"F#",glsl:"GLSL",http:"HTTP",inform7:"Inform 7",json:"JSON",latex:"LaTeX",lolcode:"LOLCODE",matlab:"MATLAB",mel:"MEL",nasm:"NASM",nginx:"nginx",nsis:"NSIS",objectivec:"Objective-C",ocaml:"OCaml",parigp:"PARI/GP",php:"PHP","php-extras":"PHP Extras",powershell:"PowerShell",jsx:"React JSX",rest:"reST (reStructuredText)",sas:"SAS",sass:"Sass (Sass)",scss:"Sass (Scss)",sql:"SQL",typescript:"TypeScript",vhdl:"VHDL",vim:"vim",wiki:"Wiki markup",yaml:"YAML"};Prism.hooks.add("before-highlight",function(s){var a=s.element.parentNode;if(a&&/pre/i.test(a.nodeName)){var t,i,r=a.getAttribute("data-language")||e[s.language]||s.language.substring(0,1).toUpperCase()+s.language.substring(1),l=a.previousSibling;l&&/\s*\bprism-show-language\b\s*/.test(l.className)&&l.firstChild&&/\s*\bprism-show-language-label\b\s*/.test(l.firstChild.className)?i=l.firstChild:(t=document.createElement("div"),i=document.createElement("div"),i.className="prism-show-language-label",t.className="prism-show-language",t.appendChild(i),a.parentNode.insertBefore(t,a)),i.innerHTML=r}})}}();
+</script>
+
+
+</body>
+
+</html>
